@@ -1,0 +1,13 @@
+{% extends "__layout.twig" %}
+
+
+{% block content %}
+	<ul class="list-group">
+        {% for item in menu_home %}
+            <li class="list-group-item">
+			<a class="btn btn-primary" href="{{item.urlObject}}" role="button">{{item.object}}</a>
+			<a class="btn btn-link" href="{{item.urlObjectImage}}" role="button">Картинка<a>
+			<a class="btn btn-link" href="{{item.urlObjectInfo}}" role="button">Описание</a>
+		</li>
+        {% endfor %}
+{% endblock %}

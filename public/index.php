@@ -1,55 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"  rel="stylesheet" />
-</head>
+require_once '../vendor/autoload.php';
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#"><i class="fa-solid fa-car"></i></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Главная</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/porsche">Porsche</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/audi">Audi</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container">
+$loader = new \Twig\Loader\FilesystemLoader('../views');
 
-        <?php 
-        $url = $_SERVER["REQUEST_URI"];
-        
-        if ($url == "/") {
-            require "../views/main.php";
-        }
-        elseif (preg_match("#^/porsche#", $url)) {
-            require "../views/porsche.php";
-        }
-        elseif (preg_match("#^/audi#", $url)) {
-            require "../views/audi.php";
-        }
-        ?>
-    </div>
-</body>
+$twig = new \Twig\Environment($loader);
 
-</html>
+$url = $_SERVER["REQUEST_URI"];
+
+$menu_home = [
+    [
+        "object" => "Audi",
+        "urlObject" => "/audi",
+        "urlObjectImage" => "/audi/image",
+        "urlObjectInfo" => "/audi/info",
+    ],
+    [
+        "object" => "Porsche",
+        "urlObject" => "/porsche",
+        "urlObjectImage" => "/porsche/image",
+        "urlObjectInfo" => "/porsche/info",
+    ]
+];
+
+
+
+$template = '';
+$title = '';
+$context = [];
+
+if ($url == '/'){
+    $template = "main.twig";
+    $title = "Главная";
+} elseif (preg_match("#^/audi#", $url)){
+    $title = "AUDI";
+    $template = "__object.twig";
+
+    $context['image_url'] = "/audi/image";
+    $context['info_url'] = "/audi/info";
+    $context['objectTitle'] = "AUDI";
+
+    if (preg_match("#^/audi/image#", $url)){
+        $template = "image.twig";
+        $context['image'] = "/images/audi.png";
+        $context["is_imgActive"] = True;
+    } elseif (preg_match("#^/audi/info#", $url)){
+        $template = "audi_info.twig";
+        $context["is_infoActive"] = True;
+    }
+} elseif (preg_match("#^/porsche#", $url)){
+    $title = "PORSCHE";
+    $template = "__object.twig";
+
+    $context['image_url'] = "/porsche/image";
+    $context['info_url'] = "/porsche/info";
+    $context['objectTitle'] = "PORSCHE";
+
+    if (preg_match("#^/porsche/image#", $url)){
+        $template = "image.twig";
+        $context['image'] = "/images/porsche.jpg";
+        $context["is_imgActive"] = True;
+    } elseif (preg_match("#^/porsche/info#", $url)){
+        $template = "porsche_info.twig";
+        $context["is_infoActive"] = True;
+    }
+} 
+
+$context['title'] = $title;
+$context['menu_home'] = $menu_home;
+
+
+echo $twig->render($template, $context);
+
+?>

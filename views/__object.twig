@@ -1,0 +1,25 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+	<h1>{{title}}</h1>
+	<ul class="nav nav-pills my-3">
+		<li class="nav-item">
+			<a class="nav-link {{is_imgActive ? " active"}}" aria-current="page" href="{{image_url}}">Картинка</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link {{is_infoActive ? " active"}}" href="{{info_url}}">Описание</a>
+		</li>
+	</ul>
+
+   
+    <ul class="list-group">
+		<li class="list-group-item">
+            {% block objectContent %}
+            Выберите пункт меню
+            {% endblock %}
+        </li>
+	</ul>
+    
+	
+
+{% endblock %}
