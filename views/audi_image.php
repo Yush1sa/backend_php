@@ -1,0 +1,1 @@
+<img src="C:\php_01\images\audi.png" class="img-thumbnail" alt="...">
