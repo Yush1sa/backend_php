@@ -1,6 +1,14 @@
 <?php
 
 require_once '../vendor/autoload.php';
+require_once '../controllers/MainController.php';
+require_once '../controllers/AudiController.php';
+require_once '../controllers/AudiImageController.php';
+require_once '../controllers/AudiInfoController.php';
+require_once '../controllers/Controller404.php';
+require_once '../controllers/PorscheController.php';
+require_once '../controllers/PorscheImageController.php';
+require_once '../controllers/PorscheInfoController.php';
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 
@@ -28,48 +36,31 @@ $menu_home = [
 $template = '';
 $title = '';
 $context = [];
+$controller = new Controller404($twig);
+
 
 if ($url == '/'){
-    $template = "main.twig";
-    $title = "Главная";
+    $controller = new MainController($twig);
 } elseif (preg_match("#^/audi#", $url)){
-    $title = "AUDI";
-    $template = "__object.twig";
-
-    $context['image_url'] = "/audi/image";
-    $context['info_url'] = "/audi/info";
-    $context['objectTitle'] = "AUDI";
-
+    $controller = new AudiController($twig);
     if (preg_match("#^/audi/image#", $url)){
-        $template = "image.twig";
-        $context['image'] = "/images/audi.png";
-        $context["is_imgActive"] = True;
+        $controller = new AudiImageController($twig);
     } elseif (preg_match("#^/audi/info#", $url)){
-        $template = "audi_info.twig";
-        $context["is_infoActive"] = True;
+        $controller = new AudiInfoController($twig);
     }
 } elseif (preg_match("#^/porsche#", $url)){
-    $title = "PORSCHE";
-    $template = "__object.twig";
-
-    $context['image_url'] = "/porsche/image";
-    $context['info_url'] = "/porsche/info";
-    $context['objectTitle'] = "PORSCHE";
+    $controller = new PorscheController($twig);
 
     if (preg_match("#^/porsche/image#", $url)){
-        $template = "image.twig";
-        $context['image'] = "/images/porsche.jpg";
-        $context["is_imgActive"] = True;
+        $controller = new PorscheImageController($twig);
     } elseif (preg_match("#^/porsche/info#", $url)){
-        $template = "porsche_info.twig";
-        $context["is_infoActive"] = True;
+        $controller = new PorscheInfoController($twig);
     }
 } 
 
-$context['title'] = $title;
-$context['menu_home'] = $menu_home;
 
-
-echo $twig->render($template, $context);
+if ($controller) {
+    $controller->get();
+}
 
 ?>
