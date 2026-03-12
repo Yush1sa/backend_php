@@ -1,13 +1,15 @@
 {% extends "__layout.twig" %}
+{% from "macros.html.twig" import btn %}
+
 
 {% block content %}
 	<h1>{{title}}</h1>
 	<ul class="nav nav-pills my-3">
 		<li class="nav-item">
-			<a class="nav-link {{is_imgActive ? " active"}}" aria-current="page" href="{{image_url}}">Картинка</a>
+			{{ btn("Картинка", image_url, is_imgActive) }}
 		</li>
 		<li class="nav-item">
-			<a class="nav-link {{is_infoActive ? " active"}}" href="{{info_url}}">Описание</a>
+			{{ btn("Описание", info_url, is_infoActive) }}
 		</li>
 	</ul>
 

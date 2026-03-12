@@ -1,0 +1,7 @@
+{% from "macros.html.twig" import btn %}
+
+<li class="list-group-item">
+    {{ btn(item.object, item.urlObject, true) }}
+    {{ btn("Картинка", item.urlObjectImage) }}
+    {{ btn("Описание", item.urlObjectInfo) }}
+</li>
