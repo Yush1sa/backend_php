@@ -13,6 +13,8 @@ class MainController extends TwigBaseController {
     {
         $context = parent::getContext(); 
 
+        $query = $this->pdo->query("select * from brands_objects");
+        $context['brands_objects'] = $query->fetchAll();
 
         $context["menu_home"] = [
             [

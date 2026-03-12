@@ -5,7 +5,7 @@ require_once "TwigBaseController.php";
 
 class AudiController extends TwigBaseController {
     public $template = "__object.twig";
-    public $title = "AUDI";
+    public $title = "Audi";
 
     public function getContext(): array{
         $context = parent::getContext();

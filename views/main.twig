@@ -2,9 +2,9 @@
 
 
 {% block content %}
-	<ul class="list-group">
-        {% for item in menu_home %}
+	<ul class="d-flex flex-wrap gap-3 list-unstyled pt-3">
+		{% for object in brands_objects %}
             {% include "menu_item.twig" %}
-        {% endfor %}
+		{% endfor %}
 	</ul>
 {% endblock %}

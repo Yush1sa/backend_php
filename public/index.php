@@ -12,31 +12,20 @@ require_once '../controllers/PorscheInfoController.php';
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 
-$twig = new \Twig\Environment($loader);
-
+$twig = new \Twig\Environment($loader, [
+    "debug" => true 
+]);
+$twig->addExtension(new \Twig\Extension\DebugExtension());
 $url = $_SERVER["REQUEST_URI"];
-
-$menu_home = [
-    [
-        "object" => "Audi",
-        "urlObject" => "/audi",
-        "urlObjectImage" => "/audi/image",
-        "urlObjectInfo" => "/audi/info",
-    ],
-    [
-        "object" => "Porsche",
-        "urlObject" => "/porsche",
-        "urlObjectImage" => "/porsche/image",
-        "urlObjectInfo" => "/porsche/info",
-    ]
-];
-
 
 
 $template = '';
 $title = '';
 $context = [];
+
 $controller = new Controller404($twig);
+
+$pdo = new PDO('mysql:host=localhost;port=3306;dbname=сar_brands', 'root', '');
 
 
 if ($url == '/'){
@@ -60,6 +49,7 @@ if ($url == '/'){
 
 
 if ($controller) {
+    $controller->setPDO($pdo);
     $controller->get();
 }
 
