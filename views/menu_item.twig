@@ -1,14 +1,15 @@
 {% from "macros.html.twig" import btn %}
 
+ 
 <li class="d-flex flex-column gap-2 border p-2" style="width: 200px;">
     <div class="d-flex justify-content-center border">
         <img src="{{object.image}}" alt="" class="img-fluid rounded p-1">
     </div>
     <div class="d-flex flex-column gap-2 align-items-center">
-        {{ btn(object.title, item.urlObject, true) }}
+        {{ btn(object.title, "/brands-object/" ~ object.id, true) }}
         <div class="d-flex gap-1 ">
-            {{ btn("Картинка", object.urlObjectImage) }}
-            {{ btn("Описание", object.urlObjectInfo) }}
+            {{ btn("Картинка", "/brands-object/" ~ object.id ~ "/image") }}
+            {{ btn("Описание", "/brands-object/" ~ object.id ~ "/info") }}
         </div>
     </div>
 </li>

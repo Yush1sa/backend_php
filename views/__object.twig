@@ -6,14 +6,13 @@
 	<h1>{{title}}</h1>
 	<ul class="nav nav-pills my-3">
 		<li class="nav-item">
-			{{ btn("Картинка", image_url, is_imgActive) }}
+			{{ btn("Картинка", '/brands-object/' ~ id ~ '/image', is_imgActive) }}
 		</li>
 		<li class="nav-item">
-			{{ btn("Описание", info_url, is_infoActive) }}
+			{{ btn("Описание", '/brands-object/' ~ id ~ '/info', is_infoActive) }}
 		</li>
 	</ul>
 
-   
     <ul class="list-group">
 		<li class="list-group-item">
             {% block objectContent %}
