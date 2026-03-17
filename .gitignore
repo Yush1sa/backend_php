@@ -1,0 +1,28 @@
+# Composer/PHP
+/vendor/
+composer.lock
+.env
+.env.local
+# other environment files, e.g. .env.test, .env.development
+
+# Twig Cache
+# Common cache directory names, adjust if yours is different
+/var/cache/
+/web/cache/twig/
+/cache/twig/
+*.twig.php
+*.php.cache
+
+# Twig/PHP specific tools
+.twig-cs-fixer.cache
+.twig-cs-fixer.php
+.php-cs-fixer.cache
+.php-cs-fixer.php
+.phpunit.cache
+.phpunit.result.cache
+
+# IDE and OS specific files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

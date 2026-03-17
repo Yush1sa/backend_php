@@ -21,7 +21,6 @@ $pdo = new PDO('mysql:host=localhost;port=3306;dbname=сar_brands', 'root', '');
 
 $router = new Router($twig, $pdo);
 $router->add("/", MainController::class);
-$router->add("/audi", AudiController::class);
 $router->add("/brands-object/(?P<id>\d+)", ObjectController::class); 
 $router->add("/brands-object/(?P<id>\d+)/info", ObjectInfoController::class); 
 $router->add("/brands-object/(?P<id>\d+)/image", ObjectImageController::class); 
