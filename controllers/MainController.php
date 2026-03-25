@@ -1,38 +1,25 @@
 <?php
-// require_once "TwigBaseController.php";
+require_once "BaseBrandsTwigController.php";
 
-
-
-class MainController extends TwigBaseController {
+class MainController extends BaseBrandTwigController {
     public $template = "main.twig";
     public $title = "Главная";
-    
     
 
     public function getContext(): array
     {
         $context = parent::getContext(); 
 
-        $query = $this->pdo->query("select * from brands_objects");
-        $context['brands_objects'] = $query->fetchAll();
-
-        $context["menu_home"] = [
-            [
-                "object" => "Audi",
-                "urlObject" => "/audi",
-                "urlObjectImage" => "/audi/image",
-                "urlObjectInfo" => "/audi/info",
-            ],
-            [
-                "object" => "Porsche",
-                "urlObject" => "/porsche",
-                "urlObjectImage" => "/porsche/image",
-                "urlObjectInfo" => "/porsche/info",
-            ]
-        ];
-        
+        if (isset($_GET["type"])){
+            $query = $this->pdo->prepare("SELECT * FROM brands_objects WHERE type = :type");
+            $query->bindParam("type", $_GET["type"]);
+            $query->execute();
+        } else {
+            $query = $this->pdo->query("SELECT * FROM brands_objects");
+        }
+    
+        $context["brands_objects"] = $query->fetchAll();
 
         return $context;
     }
 }
-?>

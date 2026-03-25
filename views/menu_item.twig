@@ -8,8 +8,8 @@
     <div class="d-flex flex-column gap-2 align-items-center">
         {{ btn(object.title, "/brands-object/" ~ object.id, true) }}
         <div class="d-flex gap-1 ">
-            {{ btn("Картинка", "/brands-object/" ~ object.id ~ "/image") }}
-            {{ btn("Описание", "/brands-object/" ~ object.id ~ "/info") }}
+            {{ btn("Картинка", "/brands-object/" ~ object.id ~ "?show=image") }}
+            {{ btn("Описание", "/brands-object/" ~ object.id ~ "?show=info") }}
         </div>
     </div>
 </li>

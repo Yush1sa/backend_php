@@ -1,8 +1,7 @@
-
 <?php
-// require_once "TwigBaseController.php";
+require_once "BaseBrandsTwigController.php";
 
-class Controller404 extends TwigBaseController {
+class Controller404 extends BaseBrandTwigController {
     public $template = "404.twig"; 
     public $title = "Страница не найдена";
 
@@ -11,6 +10,3 @@ class Controller404 extends TwigBaseController {
         parent::get();
     }
 }
-
-
-?>

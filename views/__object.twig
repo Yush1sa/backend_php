@@ -6,17 +6,17 @@
 	<h1>{{title}}</h1>
 	<ul class="nav nav-pills my-3">
 		<li class="nav-item">
-			{{ btn("Картинка", '/brands-object/' ~ id ~ '/image', is_imgActive) }}
+			{{ btn("Картинка", '/brands-object/' ~ id ~ '?show=image', is_imgActive) }}
 		</li>
 		<li class="nav-item">
-			{{ btn("Описание", '/brands-object/' ~ id ~ '/info', is_infoActive) }}
+			{{ btn("Описание", '/brands-object/' ~ id ~ '?show=info', is_infoActive) }}
 		</li>
 	</ul>
 
     <ul class="list-group">
 		<li class="list-group-item">
             {% block objectContent %}
-            Выберите пункт меню
+				Выберите пункт меню
             {% endblock %}
         </li>
 	</ul>

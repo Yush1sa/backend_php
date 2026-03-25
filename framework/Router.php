@@ -1,5 +1,7 @@
 <?php
 
+require_once "Exceptions.php";
+
 class Route
 {
     public string $route_regexp;
@@ -38,11 +40,12 @@ class Router
     {
         $url = $_SERVER['REQUEST_URI'];
 
+        $path = parse_url($url, PHP_URL_PATH);
         $controller = $default_controller;
 
         $matches = [];
         foreach ($this->routes as $route) {
-            if (preg_match($route->route_regexp, $url, $matches)) {
+            if (preg_match($route->route_regexp, $path, $matches)) {
                 $controller = $route->controller;
                 break;
             }
@@ -56,9 +59,22 @@ class Router
             $controllerInstance->setTwig($this->twig);
         }
 
-        return $controllerInstance->get();
+        try {
+            return $controllerInstance->get();
+        } catch( NotFoundException) {
+            $controllerInstance = new $default_controller();
+            $controllerInstance->setPDO($this->pdo);
+            $controllerInstance->setParams($matches);
+            $controllerInstance->setTwig($this->twig);
+            return $controllerInstance->get();
+        }
     }
 
 }
 
-?>
+
+
+
+
+
+
