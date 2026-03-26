@@ -1,0 +1,44 @@
+{% extends "__layout.twig" %}
+{% from "macros.html.twig" import btn %}
+
+{% block content %}
+    <div class="container"></div>
+        <h1>Поиск</h1>
+
+        <form action="">
+            <div class="row g-3">
+                <div class="col">
+                    Тип
+                    <select name="type" class="form-select">
+                        <option value="">Все</option>
+                        <option value="Германия">Германия</option>
+                        <option value="Италия">Италия</option>
+                    </select>
+                </div>
+                <div class="col">
+                    Название
+                    <input type="text" class="form-control" name="title">
+                </div>
+                <div class="col">
+                    Описание
+                    <input type="text" class="form-control" name="info">
+                </div>
+
+                <div class="col-auto d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary">Найти</button>
+                </div>
+            </div>
+
+        </form>
+
+        <div class="row g-3 mt-2">
+            <ul class="list-group">
+                {% for object in objects %}
+                    <li class="list-group-item">
+                        {{ btn(object.title, "/brands-object/" ~ object.id) }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
