@@ -27,4 +27,4 @@ composer.lock
 .DS_Store
 Thumbs.db
 
-/media/
+public/media/
