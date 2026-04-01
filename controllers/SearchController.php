@@ -2,7 +2,7 @@
 
 require_once "BaseBrandsTwigController.php";
 
-class SearchController extends BaseBrandTwigController {
+class SearchController extends BaseBrandsTwigController {
     public $template = "search.twig";
 
     public function getContext(): array {
@@ -14,7 +14,7 @@ class SearchController extends BaseBrandTwigController {
         $info = $_GET["info"] ?? "";
 
         $sql = <<<EOL
-        SELECT id, title 
+        SELECT id, title
         FROM brands_objects
         WHERE (:title = '' OR title like CONCAT('%', :title, '%'))
         AND (:type = type OR :type = '')

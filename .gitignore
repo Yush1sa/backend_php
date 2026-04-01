@@ -26,3 +26,5 @@ composer.lock
 .vscode/
 .DS_Store
 Thumbs.db
+
+/media/

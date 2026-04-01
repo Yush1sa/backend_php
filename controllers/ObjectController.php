@@ -1,10 +1,7 @@
 <?php
-
-use const Dom\NOT_FOUND_ERR;
-
 require_once "BaseBrandsTwigController.php";
 
-class ObjectController extends BaseBrandTwigController
+class ObjectController extends BaseBrandsTwigController
 {
 
     public $template = "__object.twig";

@@ -3,9 +3,10 @@
 require_once '../vendor/autoload.php';
 require_once '../framework/autoload.php';
 require_once '../controllers/MainController.php';
-require_once "../controllers/ObjectController.php";
+require_once '../controllers/ObjectController.php';
 require_once '../controllers/Controller404.php';
 require_once '../controllers/SearchController.php';
+require_once '../controllers/BrandsObjectCreateController.php';
 
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
@@ -22,6 +23,7 @@ $router = new Router($twig, $pdo);
 $router->add("/", MainController::class);
 $router->add("/brands-object/(?P<id>\d+)", ObjectController::class); 
 $router->add("/search", SearchController::class);
+$router->add("/brands-object/create", BrandsObjectCreateController::class);
 
 $router->get_or_default(Controller404::class);
 

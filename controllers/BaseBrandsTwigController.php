@@ -1,6 +1,6 @@
 <?php
 
-class BaseBrandTwigController extends TwigBaseController {
+class BaseBrandsTwigController extends TwigBaseController {
     public function getContext() : array{
         $context = parent::getContext();
         

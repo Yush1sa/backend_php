@@ -60,13 +60,13 @@ class Router
         }
 
         try {
-            return $controllerInstance->get();
+            return $controllerInstance->process_response();
         } catch( NotFoundException) {
             $controllerInstance = new $default_controller();
             $controllerInstance->setPDO($this->pdo);
             $controllerInstance->setParams($matches);
             $controllerInstance->setTwig($this->twig);
-            return $controllerInstance->get();
+            return $controllerInstance->process_response();
         }
     }
 

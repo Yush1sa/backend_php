@@ -20,8 +20,7 @@ class TwigBaseController extends BaseController {
         return $context;
     }
     
-    public function get() {
-        $context =  $this->getContext();
+    public function get(array $context) {
         $template = $this->getTemplate();
 
         $currentCode = http_response_code();
