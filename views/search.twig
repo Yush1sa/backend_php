@@ -9,10 +9,11 @@
             <div class="row g-3">
                 <div class="col">
                     Тип
-                    <select name="type" class="form-select">
+                    <select name="country" class="form-select">
                         <option value="">Все</option>
-                        <option value="Германия">Германия</option>
-                        <option value="Италия">Италия</option>
+                        {% for c in countries %}
+                            <option value="{{c.id}}">{{c.country}}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="col">

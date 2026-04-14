@@ -7,6 +7,8 @@ require_once '../controllers/ObjectController.php';
 require_once '../controllers/Controller404.php';
 require_once '../controllers/SearchController.php';
 require_once '../controllers/BrandsObjectCreateController.php';
+require_once '../controllers/BrandsCountryCreateController.php';
+require_once '../controllers/BrandsObjectDeleteController.php';
 
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
@@ -23,7 +25,9 @@ $router = new Router($twig, $pdo);
 $router->add("/", MainController::class);
 $router->add("/brands-object/(?P<id>\d+)", ObjectController::class); 
 $router->add("/search", SearchController::class);
-$router->add("/brands-object/create", BrandsObjectCreateController::class);
+$router->add("/brands-object/create-brand", BrandsObjectCreateController::class);
+$router->add("/brands-object/create-country", BrandsCountryCreateController::class);
+$router->add("/brands-object/(?P<id>\d+)/delete", BrandsObjectDeleteController::class);
 
 $router->get_or_default(Controller404::class);
 

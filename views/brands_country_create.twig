@@ -1,0 +1,39 @@
+{% extends "__layout.twig" %}
+{% from "macros.html.twig" import btn %}
+
+{% block content %}
+	<h1>Добавление новой марки машины</h1>
+	<hr>
+	{# {% if message %}
+		<div class="alert alert-info">
+			{{ message }}
+			{{btn("Открыть новый объект", "/brands-object/" ~ id)}}
+		</div>
+	{% endif %} #}
+
+
+	<form action="" method="POST" enctype="multipart/form-data" class="row g-3">
+		<div class="row gy-2">
+			<div class="col-6">
+				<label class="form-label">Название</label>
+				<input type="text" class="form-control" name="country">
+			</div>
+		</div>
+		<div class="row gy-1">
+			<div class="col-6">
+				<div class="mb-3">
+					<label for="formFile" class="form-label">Картинка</label>
+					<input class="form-control" type="file" name="image">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="mb-3">
+					<button type="submit" class="btn btn-primary">Добавить</button>
+				</div>
+			</div>
+		</div>
+	</form>
+
+{% endblock %}
