@@ -9,6 +9,7 @@ require_once '../controllers/SearchController.php';
 require_once '../controllers/BrandsObjectCreateController.php';
 require_once '../controllers/BrandsCountryCreateController.php';
 require_once '../controllers/BrandsObjectDeleteController.php';
+require_once '../controllers/BrandsObjectUpdateController.php';
 
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
@@ -28,6 +29,7 @@ $router->add("/search", SearchController::class);
 $router->add("/brands-object/create-brand", BrandsObjectCreateController::class);
 $router->add("/brands-object/create-country", BrandsCountryCreateController::class);
 $router->add("/brands-object/(?P<id>\d+)/delete", BrandsObjectDeleteController::class);
+$router->add("/brands-object/(?P<id>\d+)/edit", BrandsObjectUpdateController::class);
 
 $router->get_or_default(Controller404::class);
 

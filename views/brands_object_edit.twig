@@ -1,0 +1,51 @@
+{% extends "__layout.twig" %}
+{% from "macros.html.twig" import btn %}
+
+{% block content %}
+	<h1>Изменение марки машин</h1>
+	<hr>
+	{% if message %}
+		<div class="alert alert-info">
+			{{ message }}
+			{{btn("Открыть обновлённый объект", "/brands-object/" ~ object.id)}}
+		</div>
+	{% endif %}
+
+	<form action="" method="POST" enctype="multipart/form-data" class="row g-3">
+		<div class="col-md-8">
+			<div class="row g-3">
+				<div class="col-md-6">
+					<label class="form-label">Название</label>
+					<input type="text" class="form-control" name="title" value="{{object.title}}">
+				</div>
+				<div class="col-md-6">
+					<label class="form-label">Тип (Страна)</label>
+					<select class="form-control" name="country">
+						{% for c in countries %}
+							<option value="{{c.id}}" {% if c.id == object.country_id %} selected {% endif %}>
+								{{c.country|title}}
+							</option>
+						{% endfor %}
+					</select>
+				</div>
+				<div class="col-12">
+					<label class="form-label">Полное описание</label>
+					<textarea name="info" class="form-control" rows="7">{{object.info}}</textarea>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<label class="form-label d-block">Текущая картинка</label>
+			<div class="d-flex justify-content-center border mb-3" style="height: 210px;">
+				<img src="{{ object.image }}" alt="" class="img-fluid rounded p-1" style="height: 100%; width: auto; object-fit: contain;">
+			</div>
+			<input class="form-control form-control-sm" type="file" name="image">
+			<div class="form-text">Оставьте пустым, если не хотите менять</div>
+		</div>
+
+		<div class="col-12 text-end mt-3">
+			<button type="submit" class="btn btn-primary">Сохранить изменения</button>
+		</div>
+	</form>
+
+{% endblock %}
