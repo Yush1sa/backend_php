@@ -19,7 +19,7 @@
 					<input type="text" class="form-control" name="title" value="{{object.title}}">
 				</div>
 				<div class="col-md-6">
-					<label class="form-label">Тип (Страна)</label>
+					<label class="form-label">Страна</label>
 					<select class="form-control" name="country">
 						{% for c in countries %}
 							<option value="{{c.id}}" {% if c.id == object.country_id %} selected {% endif %}>
