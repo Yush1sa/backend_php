@@ -34,6 +34,7 @@ EOL;
 
         $context['message'] = "Вы успешно создали объект";
         $context["id"] = $this->pdo->lastInsertId();
+        
 
         $this->get($context);
     }

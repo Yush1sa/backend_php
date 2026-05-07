@@ -2,44 +2,46 @@
 {% from "macros.html.twig" import btn %}
 
 {% block content %}
-    <div class="container"></div>
-        <h1>Поиск</h1>
+	<h1>Поиск</h1>
 
-        <form action="">
-            <div class="row g-3">
-                <div class="col">
-                    Тип
-                    <select name="country" class="form-select">
-                        <option value="">Все</option>
-                        {% for c in countries %}
-                            <option value="{{c.id}}">{{c.country}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="col">
-                    Название
-                    <input type="text" class="form-control" name="title">
-                </div>
-                <div class="col">
-                    Описание
-                    <input type="text" class="form-control" name="info">
-                </div>
+	<form action="">
+		<div class="row g-3">
+			<div class="col">
+				Тип
+				<select name="country" class="form-select">
+					<option value="">Все</option>
+					{% for c in countries %}
+						<option value="{{c.id}}"{% if country == c.id %}selected{% endif %}>
+							{{c.country}}
+						</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="col">
+				Название
+				<input type="text" class="form-control" name="title" value="{{ title }}">
+			</div>
+			<div class="col">
+				Описание
+				<input type="text" class="form-control" name="info" value="{{ info }}">
+			</div>
 
-                <div class="col-auto d-flex align-items-end">
-                    <button type="submit" class="btn btn-primary">Найти</button>
-                </div>
-            </div>
+			<div class="col-auto d-flex align-items-end">
+				<button type="submit" class="btn btn-primary">Найти</button>
+			</div>
+		</div>
 
-        </form>
+	</form>
 
-        <div class="row g-3 mt-2">
-            <ul class="list-group">
-                {% for object in objects %}
-                    <li class="list-group-item">
-                        {{ btn(object.title, "/brands-object/" ~ object.id) }}
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
+	<div class="row g-3 mt-2">
+		<ul class="list-group">
+			{% for object in objects %}
+				<li class="list-group-item">
+					{{ btn(object.title, "/brands-object/" ~ object.id) }}
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+
 {% endblock %}

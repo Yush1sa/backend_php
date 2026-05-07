@@ -22,6 +22,8 @@ class ObjectController extends BaseBrandsTwigController
         
         $context['id'] = $data['id'];
         $context['title'] = $data['title'];
+        $context['my_session_message'] = $_SESSION['welcome_message'] ?? "";
+        $context['messages'] = $_SESSION['messages'] ?? "";
 
  
         if (isset($_GET["show"])){

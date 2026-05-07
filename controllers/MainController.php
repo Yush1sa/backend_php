@@ -22,8 +22,9 @@ class MainController extends BaseBrandsTwigController {
         } else {
             $query = $this->pdo->query("SELECT * FROM brands_objects");
         }
-    
+
         $context["brands_objects"] = $query->fetchAll();
+
 
         return $context;
     }

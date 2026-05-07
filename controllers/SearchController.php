@@ -15,6 +15,7 @@ class SearchController extends BaseBrandsTwigController
         $title = $_GET["title"] ?? "";
         $info = $_GET["info"] ?? "";
 
+
         $sql = <<<EOL
         SELECT b.id, b.title, c.country
         FROM brands_objects AS b
@@ -29,6 +30,10 @@ class SearchController extends BaseBrandsTwigController
         $query->bindValue("country", $country);
         $query->bindValue("info", $info);
         $query->execute();
+
+        $context['country'] = $country;
+        $context['title'] = $title;
+        $context['info'] = $info;
 
         $context["objects"] = $query->fetchAll();
 

@@ -49,6 +49,7 @@ class Router
 
     public function get_or_default($default_controller)
     {
+
         $url = $_SERVER['REQUEST_URI'];
 
         $path = parse_url($url, PHP_URL_PATH);
@@ -73,6 +74,7 @@ class Router
         }
 
         if ($newRoute) {
+            $context = $controllerInstance->getContext(); 
             foreach ($newRoute->middlewareList as $m) {
                 $m->apply($controllerInstance, []);
             }

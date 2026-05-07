@@ -14,7 +14,7 @@ class BrandsObjectDeleteController extends BaseController {
         $query = $this->pdo->prepare($sql);
         $query->bindValue(":id", $id);
         $query->execute();
-
+       
         header("Location: /");
         exit;
     }
